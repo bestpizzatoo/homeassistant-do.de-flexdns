@@ -51,7 +51,7 @@ For updating your Domain name to your current IP you need
   
    When sensor.myip changes state or any attributes
 
-   then do Perform action 'sehll_command.update_ddns'
+   then do Perform action 'shell_command.update_ddns'
 
    if the shell command isn't listed yet, restart home assistant for config changes to take effect.
    
