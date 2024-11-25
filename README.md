@@ -22,16 +22,16 @@ For updating your Domain name to your current IP you need
    This integration is already built in in Home Assistant (Doc here: https://www.home-assistant.io/integrations/shell_command/)
    Add this line to your configuration yaml
 ```   
-   shell_command:
-      update_ddns: 'curl "{{ states("sensor.ddns_url") + states("sensor.myip") }}"'
+shell_command:
+   update_ddns: 'curl "{{ states("sensor.ddns_url") + states("sensor.myip") }}"'
 ```
    and
 ```
-   sensor:
-      - platform: template
-        sensors:
-          ddns_url:
-            value_template: !secret ddns_url
+sensor:
+   - platform: template
+     sensors:
+       ddns_url:
+         value_template: !secret ddns_url
 ```
    Restart your home assistant for reloading your configuration.yaml
 
@@ -42,10 +42,19 @@ For updating your Domain name to your current IP you need
    sensor.myip is your IPv4 IP.
 
    This is how they look:
-   ```
-   ddns_url:     "https://ddns.do.de/?username=DDNS-KD000-F000&password=000000000&hostname=*.domain.tld&myip="
-   sensor.myip:  "255.255.255.255"
 ```
+ddns_url:     "https://ddns.do.de/?username=DDNS-KD000-F000&password=000000000&hostname=*.domain.tld&myip="
+sensor.myip:  "255.255.255.255"
+```
+put ddns_url in the secret.yaml like this:
+secrets.yaml:
+
+```
+ddns_url:     "https://ddns.do.de/?username=DDNS-KD000-F000&password=000000000&hostname=*.domain.tld&myip="
+```
+
+If secrets.yaml doesnt exist, create it in the same folder as your configuration.yaml
+Documentation on secrets: https://www.home-assistant.io/docs/configuration/secrets/
    
 ## 3. Create an Automation that does as follows
   
